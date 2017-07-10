@@ -7,9 +7,8 @@ services:
     volumes:
      - .:/code
     healthcheck:
-      test: ["CMD", "exit 0"]
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
+      test: "exit 0"
   redis:
     image: "redis:alpine"
+    healthcheck:
+      test: "exit 0"
