@@ -6,11 +6,6 @@ services:
      - "5000:5000"
     volumes:
      - .:/code
-    depends_on:
-      db:
-        condition: service_healthy
-      redis:
-        condition: service_started
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5000"]
       interval: 1m30s
@@ -18,7 +13,3 @@ services:
       retries: 3
   redis:
     image: "redis:alpine"
-  db:
-    image: "redis:alpine"
-    healthcheck:
-      test: "exit 0"
