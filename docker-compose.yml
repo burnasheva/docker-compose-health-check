@@ -1,0 +1,19 @@
+version: '2.1'
+services:
+  web:
+    build: .
+    ports:
+     - "5000:5000"
+    volumes:
+     - .:/code
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+  redis:
+    image: "redis:alpine"
+  db:
+    image: "redis:alpine"
+    healthcheck:
+      test: "exit 0"
